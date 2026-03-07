@@ -17,6 +17,8 @@ spec:
       - name: zabbix-web
         image: zabbix/zabbix-web-nginx-pgsql:latest
         env:
+        - name: ZBX_SERVER_HOST
+          value: zabbix-server
         - name: DB_SERVER_HOST
           value: postgres
         - name: POSTGRES_USER
@@ -24,4 +26,5 @@ spec:
         - name: POSTGRES_PASSWORD
           value: zabbixpass
         ports:
+
         - containerPort: 8080
