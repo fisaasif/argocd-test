@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.1.203
-    path: /nfs/zabbix-postgres
+    path: /srv/k8s-nfs/zabbix-postgres
