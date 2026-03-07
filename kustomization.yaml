@@ -1,0 +1,9 @@
+resources:
+- namespace.yaml
+- postgres/pvc.yaml
+- postgres/deployment.yaml
+- postgres/service.yaml
+- zabbix-server/deployment.yaml
+- zabbix-server/service.yaml
+- zabbix-web/deployment.yaml
+- zabbix-web/service.yaml
