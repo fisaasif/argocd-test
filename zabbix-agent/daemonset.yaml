@@ -20,8 +20,6 @@ spec:
         env:
         - name: ZBX_SERVER
           value: 127.0.0.1,192.168.1.0/24,10.244.0.0/16
-        - name: ZBX_SERVER_HOST
-          value: zabbix-server
         - name: ZBX_HOSTNAME
           valueFrom:
             fieldRef:
@@ -30,3 +28,4 @@ spec:
         - containerPort: 10050
         securityContext:
           privileged: true
+
