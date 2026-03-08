@@ -25,11 +25,9 @@ spec:
       - name: zabbix-agent
         image: zabbix/zabbix-agent:latest
         env:
-        - name: ZBX_SERVER
-          value: "127.0.0.1,192.168.1.0/24,10.244.0.0/16"   # IP ranges, not hostnames
-        - name: ZBX_SERVER_HOST
-          value: "zabbix-server.monitoring.svc.cluster.local"
-        - name: ZBX_SERVER_ACTIVE
+        - name: ZBX_PASSIVESERVERS          # ← THIS is what the config actually reads
+          value: "127.0.0.1,192.168.1.0/24,10.244.0.0/16"
+        - name: ZBX_ACTIVESERVERS           # ← THIS is what ServerActive reads
           value: "zabbix-server.monitoring.svc.cluster.local"
         - name: ZBX_HOSTNAME
           valueFrom:
