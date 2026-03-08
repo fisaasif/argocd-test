@@ -12,6 +12,8 @@ spec:
       labels:
         app: zabbix-agent
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: zabbix-agent
         image: zabbix/zabbix-agent:latest
