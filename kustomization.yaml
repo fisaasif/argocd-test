@@ -7,5 +7,6 @@ resources:
 - zabbix-server/deployment.yaml
 - zabbix-server/service.yaml
 - zabbix-web/deployment.yaml
-
 - zabbix-web/service.yaml
+- zabbix-agent/daemonset.yaml
+- zabbix-agent/service.yaml
