@@ -14,18 +14,38 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+          operator: Exists
+        - key: node-role.kubernetes.io/control-plane
+          effect: NoSchedule
+          operator: Exists
       containers:
       - name: zabbix-agent
         image: zabbix/zabbix-agent:latest
         env:
         - name: ZBX_SERVER
-          value: 127.0.0.1,192.168.1.0/24,10.244.0.0/16
+          value: "0.0.0.0/0"          # Temporarily open to debug; tighten after confirming connection
+        - name: ZBX_SERVER_HOST        # Active checks: where agent sends data TO
+          value: "zabbix-server.monitoring.svc.cluster.local"
+        - name: ZBX_SERVER_ACTIVE      # Must match ZBX_SERVER_HOST for active checks
+          value: "zabbix-server.monitoring.svc.cluster.local"
         - name: ZBX_HOSTNAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: ZBX_PASSIVE_ALLOW_LIST # Explicit allow-list for passive checks (newer agent versions)
+          value: "127.0.0.1,192.168.1.0/24,10.244.0.0/16,10.96.0.0/12"
         ports:
         - containerPort: 10050
+          hostPort: 10050              # Expose on the actual node IP
         securityContext:
           privileged: true
-
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
