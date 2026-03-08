@@ -20,8 +20,8 @@ spec:
         env:
         - name: ZBX_SERVER_HOST
           value: zabbix-server
-	- name: ZBX_SERVER
- 	  value: 0.0.0.0/0
+        - name: ZBX_SERVER
+          value: 0.0.0.0/0
         - name: ZBX_HOSTNAME
           valueFrom:
             fieldRef:
