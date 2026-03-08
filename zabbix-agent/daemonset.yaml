@@ -21,7 +21,7 @@ spec:
         - name: ZBX_SERVER_HOST
           value: zabbix-server
         - name: ZBX_SERVER
-          value: 0.0.0.0/0
+          value: 127.0.0.1,10.244.0.0/16
         - name: ZBX_HOSTNAME
           valueFrom:
             fieldRef:
